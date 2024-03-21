@@ -14,8 +14,6 @@ const onSubmit = async () => {
   const { error } = await supabase.auth.signUp({
     email: email.value,
     password: password.value,
-  }, {
-    // Ici, vous pouvez ajouter les autres données utilisateur que vous souhaitez inclure
     username: username.value,
   });
   if (error) {
