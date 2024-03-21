@@ -1,4 +1,20 @@
 <script setup>
+import { onMounted,ref } from 'vue'
+import { fetchTeams } from '@/api/teams' 
+import {insertMatch} from '@/api/matchs'
+
+
+const teamlist = ref([])
+const myTeam = ref([])
+
+
+
+onMounted(async () => {
+    teamlist.value = await (fetchTeams())
+    myTeam.value = await (fetchTeams())
+})
+
+
 </script>
 
 <template>
@@ -7,10 +23,13 @@
     <form class="flex flex-col ">
         <div class="space-y-6">
             <div>
-                <input type="text" class="border-2 rounded-md text-center w-full">
+                <select class="border-2 rounded-md w-full text-center">
+                    <option v-for="team in myTeam" :key="team.id"> {{ team.name }}</option>
+                </select>
             </div>
             <div>
                 <select   class="border-2 rounded-md w-full text-center">
+                    <option v-for="team in teamlist" :key="team.id">{{team.name}}</option>
                 </select>
             </div>
             <div>
@@ -26,7 +45,7 @@
                 <input id="opponentTeamScore" class="border-2 rounded-md size-16 text-center" type="number">
             </div>
         </div>
-        <button type="submit" class="p-2 mt-4 bg-blue-500 rounded-md">Create the Match</button>
+        <button @click="submit" class="p-2 mt-4 bg-green-400 rounded-md">Create the Match</button>
       </div>
     </form>
 </div>
