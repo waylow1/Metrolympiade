@@ -35,7 +35,7 @@ const router = createRouter({
       component: () => import('../views/MatchsView.vue')
     },
     {
-        path:'matchCreation',
+        path:'/matchCreation',
         name:'matchCreation',
         component: () => import('../views/MatchCreationView.vue')
     }
