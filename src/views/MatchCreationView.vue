@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted,ref } from 'vue'
-import { fetchTeams } from '@/api/teams' 
+import { fetchMyTeam, fetchTeams } from '@/api/teams' 
 import {insertMatch} from '@/api/matchs'
 
 
@@ -11,8 +11,27 @@ const myTeam = ref([])
 
 onMounted(async () => {
     teamlist.value = await (fetchTeams())
-    myTeam.value = await (fetchTeams())
+    myTeam.value = await (fetchMyTeam())
 })
+
+
+const submit = async  () => {
+    const myTeamScore = document.getElementById('myTeamScore').value
+    const opponentTeamScore = document.getElementById('opponentTeamScore').value
+    const sport = document.getElementById('sport').value
+    const opponentTeam = document.querySelectorAll('select')[1].value
+    const time = document.querySelector('input[type="time"]').value
+    const match = {
+        myTeam,
+        opponentTeam,
+        time,
+        sport,
+        myTeamScore,
+        opponentTeamScore
+    }
+    await insertMatch(match)
+
+}
 
 
 </script>
@@ -31,6 +50,9 @@ onMounted(async () => {
                 <select   class="border-2 rounded-md w-full text-center">
                     <option v-for="team in teamlist" :key="team.id">{{team.name}}</option>
                 </select>
+            </div>
+            <div>
+                <input id="sport"  class="border-2 rounded-md w-full text-center" type="text"/>
             </div>
             <div>
                 <input type="time" class="border-2 rounded-md w-full text-center">
