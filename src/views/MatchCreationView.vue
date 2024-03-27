@@ -4,6 +4,7 @@ import { fetchMyTeam, fetchTeams } from '@/api/teams'
 import {insertMatch} from '@/api/matchs'
 import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
 
 const teamlist = ref([])
@@ -15,7 +16,8 @@ const sport = ref('')
 const time = ref('')
 
 const { user } = storeToRefs(useUserStore())
-
+console.log(user.value)
+const router = useRouter()
 onMounted(async () => {
     teamlist.value = await (fetchTeams())
     myTeam.value = await (fetchMyTeam("edbdadfa-82ee-4757-a4b0-ab6e77dbe958"))
@@ -47,6 +49,7 @@ const submit = () => {
     }
     else{
         alert("Le match a bien été créé")
+        router.push({name: 'matchs'})
     }
 
 }
