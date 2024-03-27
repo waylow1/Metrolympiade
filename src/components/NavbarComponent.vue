@@ -1,9 +1,18 @@
 <script setup>
 import { loadScript } from "vue-plugin-load-script";
 import { useRouter } from 'vue-router';
+import { supabase } from '@/supabase';
+import { ref } from 'vue';
+
 
 const router = useRouter();
+const loading = ref(false);
 
+const logout = async ()=>{
+    loading.value = true;
+    await supabase.auth.signOut()
+    router.push('/login')
+}
 loadScript("https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js")
   .then(() => {
 
@@ -63,7 +72,7 @@ const navigate = (path) => {
               </button>
             </li>
             <li>
-              <button type="button" @click="{}" class="bg-white hover:bg-white focus:outline-none">
+              <button  type="button" @click="logout" class="bg-white hover:bg-white focus:outline-none" :loading="loading">
               <a href="#"
                 class="text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Logout</a>
               </button>

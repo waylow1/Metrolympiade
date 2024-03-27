@@ -17,9 +17,9 @@ const onSubmit = async()=>{
         password: password.value
     })
     if (error) {
-    console.error("Une erreur s'est produite lors de la connectio, :", error.message);
+    console.error("Une erreur s'est produite lors de la connexion :", error.message);
   } else {
-    alert("Connection réussie");
+    alert("Connexion réussie");
     routerPush({ name: 'rankings' });
   }
     
