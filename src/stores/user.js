@@ -3,11 +3,11 @@ import { defineStore } from 'pinia'
 import { supabase } from '@/supabase'
 
 export const useUserStore = defineStore('user', () => {
-  const userTeam = ref(null)
+  const user = ref(null)
 
   async function fetchUserTeam(userId){
     if(!userId) {
-        userTeam.value = null
+        user.value = null
         return
     }
     const {data,error} = await supabase.from('team').select('*').eq('leader',userId).single()
@@ -15,10 +15,10 @@ export const useUserStore = defineStore('user', () => {
         console.error('Error fetching user profile : ',error)
     }
     else{
-        userTeam.value = data
+        user.value = data
     }
   }
 
 
-  return { userTeam, fetchUserTeam }
+  return { user, fetchUserTeam }
 })
