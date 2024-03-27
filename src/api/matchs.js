@@ -1,5 +1,6 @@
 import { supabase } from '@/supabase'
-
+import {ref} from 'vue'
+export const matchList = ref([])
 
 export const insertMatch = async (match) => {
     const { data, error } = await supabase
@@ -17,3 +18,17 @@ export const insertMatch = async (match) => {
   }
   return data
 }
+
+export const fetchMatchs = async() => {
+  const {data,error} = await supabase
+  .from('teams')
+  .select(
+    '*')
+  .order('created_at',{ascending:false})
+  .limit(10)
+  if (error) {
+      console.error('Error fetching teams : ',error)
+  }
+  matchList.value = data.reverse()
+  }
+  
