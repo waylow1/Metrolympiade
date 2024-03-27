@@ -7,11 +7,10 @@ import AppButton from '@/components/AppButton.vue';
 
 const { push: routerPush } = useRouter();
 const email = ref('');
-const username = ref('');
 const password = ref('');
 
 const onSubmit = async () => {
-  if (!email.value || !username.value || !password.value) return;
+  if (!email.value|| !password.value) return;
   const { error } = await supabase.auth.signUp({
     email: email.value,
     password: password.value,
