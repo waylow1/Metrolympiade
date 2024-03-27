@@ -14,10 +14,9 @@ export const fetchTeams = async () => {
 export const fetchMyTeam = async (userId) => {
   const { data, error } = await supabase
     .from('teams')
-    .select('name')
-    .eq('leader', userId)
-  
-    
+    .select('*')
+    .eq('leader', userId).single()
+   
   if (error) {
     console.error('Error fetching teams : ',error)
   }
