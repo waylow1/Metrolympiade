@@ -14,12 +14,22 @@ export const fetchTeams = async () => {
 export const fetchMyTeam = async (userId) => {
   const { data, error } = await supabase
     .from('teams')
-    .select('name')
+    .select('*')
     .eq('leader', userId)
-  
-    
   if (error) {
     console.error('Error fetching teams : ',error)
+  }
+  return data
+}
+
+
+export const updateTeamMembers = async (teamId, members) => {
+  const { data, error } = await supabase
+    .from('teams')
+    .update({ members })
+    .eq('id', teamId)
+  if (error) {
+    console.error('Error updating team members : ',error)
   }
   return data
 }
