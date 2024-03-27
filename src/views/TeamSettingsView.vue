@@ -1,16 +1,24 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { fetchMyTeam,updateTeamMembers } from '@/api/teams';
+import { fetchMyTeam,updateTeamMembers,updateTeamName } from '@/api/teams';
 import { PlusCircleIcon , MinusCircleIcon } from '@heroicons/vue/24/solid';
 
 const teamData = ref([]);
 const members = ref([]);
 const newMember = ref('');
+const editedTeamName = ref('');
 
 onMounted(async () => {
-     teamData.value = await fetchMyTeam("edbdadfa-82ee-4757-a4b0-ab6e77dbe958");
-     members.value  = teamData.value[0].members;
+     teamData.value = await fetchMyTeam("cf14d7c5-e910-4aef-960c-df4b3aaa41e2"); 
+     members.value  = teamData.value.members || [];
+     editedTeamName.value = teamData.value.name || '';
 })
+
+
+const submitTeamName = () => {
+    updateTeamName(teamData.value.id, editedTeamName.value);
+};
+
 
 const addMember = () => {
     if (!newMember.value) return;
@@ -20,19 +28,20 @@ const addMember = () => {
         return;
     }
     members.value.push(newMember.value);
-    updateTeamMembers(teamData.value[0].id,members.value);
+    updateTeamMembers(teamData.value.id,members.value);
     newMember.value = '';
 }
 const removeMember = (index) => {
     members.value.splice(index,1)
-    updateTeamMembers(teamData.value[0].id,members.value);
+    updateTeamMembers(teamData.value.id,members.value);
 }
 </script>
 
 <template>
     <div v-if="teamData">
         <label for="NomEquipe">Nom de l'équipe : </label>
-        <span>{{ teamData[0]?.name }}</span>
+        <input type="text" v-model="editedTeamName" class="border border-black"/>
+        <button @click="submitTeamName" >Enregistrer</button>
         <div v-for="(member,index) in members" :key="index" >
             <label for="NomMembre">Nom du membre : </label>
             <span>{{ member }}</span>

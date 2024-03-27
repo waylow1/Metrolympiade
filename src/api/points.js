@@ -1,7 +1,7 @@
 import { supabase } from '@/supabase'
 
 
-export const fetchPoints = async (teamID) => {
+export const fetchMatchsFromATeam = async (teamID) => {
   const { data, error } = await supabase
   .from('matchs')
   .select('*')
