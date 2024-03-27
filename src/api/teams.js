@@ -21,3 +21,15 @@ export const fetchMyTeam = async (userId) => {
   }
   return data
 }
+
+
+export const updateTeamMembers = async (teamId, members) => {
+  const { data, error } = await supabase
+    .from('teams')
+    .update({ members })
+    .eq('id', teamId)
+  if (error) {
+    console.error('Error updating team members : ',error)
+  }
+  return data
+}
