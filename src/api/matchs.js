@@ -1,6 +1,8 @@
 import { supabase } from '@/supabase'
 import {ref} from 'vue'
-export const matchList = ref([])
+
+
+
 
 export const insertMatch = async (match) => {
     const { data, error } = await supabase
@@ -29,6 +31,6 @@ export const fetchMatchs = async() => {
   if (error) {
       console.error('Error fetching teams : ',error)
   }
-  matchList.value = data.reverse()
+  return data.reverse()
   }
   
