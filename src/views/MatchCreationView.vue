@@ -15,13 +15,17 @@ const opponentTeamScore = ref(0)
 const sport = ref('')
 const time = ref('')
 
-const { user } = storeToRefs(useUserStore())
-console.log(user.value)
+
+const { user } = await(storeToRefs(useUserStore()))
+
 const router = useRouter()
+
 onMounted(async () => {
-    teamlist.value = await (fetchTeams())
-    myTeam.value = await (fetchMyTeam("edbdadfa-82ee-4757-a4b0-ab6e77dbe958"))
+    teamlist.value = await(fetchTeams())
+    myTeam.value =  await(fetchMyTeam("edbdadfa-82ee-4757-a4b0-ab6e77dbe958"))
 })
+
+console.log(user);
 
 
 const submit = () => {
@@ -54,38 +58,40 @@ const submit = () => {
 
 }
 
-
-
 </script>
 
 <template>
    <div class="flex flex-col items-center justify-center">
-    <h1>Matchs</h1>
+    <h1>Match</h1>
     
-    <div class="space-y-6">
+    <div class="space-y-10 text-center">
             <div>
-                <select class="border-2 rounded-md w-full text-center">
+                <label for="myTeam"> Mon équipe </label>
+                <select id="myTeam" class="border-2 rounded-md w-full text-center">
                     <option :value="myTeam" > {{ myTeam.name }}</option>
                 </select>
             </div>
             <div>
-                <select v-model="opponentTeam" class="border-2 rounded-md w-full text-center">
+                <label for="opponnentTeam"> Equipe adverse </label>
+                <select id="opponnentTeam" v-model="opponentTeam" class="border-2 rounded-md w-full text-center">
                     <option v-for="team in teamlist" :key="team.id" :value="team">{{team.name}}</option>
                 </select>
             </div>
             <div>
-                <input  v-model="sport" class="border-2 rounded-md w-full text-center" type="text"/>
+                <label for="sport"> Epreuve </label>
+                <input  id="sport" v-model="sport" class="border-2 rounded-md w-full text-center" type="text"/>
             </div>
             <div>
-                <input type="time" v-model="time" class="border-2 rounded-md w-full text-center">
+                <label for="time"> Heure de la rencontre </label>
+                <input id="time" type="time" v-model="time" class="border-2 rounded-md w-full text-center">
             </div>
         <div class="flex space-x-28">
             <div class="flex flex-col">
-                <label for="myTeamScore">My team</label>
+                <label for="myTeamScore">Mon score</label>
                 <input id="myTeamScore" v-model="myTeamScore"  class="border-2 rounded-md size-16 text-center" type="number">
             </div>
             <div class="flex flex-col">
-                <label for="opponentTeamScore">Team 2</label>
+                <label for="opponentTeamScore">Score adverse</label>
                 <input id="opponentTeamScore" v-model="opponentTeamScore" class="border-2 rounded-md size-16 text-center" type="number">
             </div>
         </div>
