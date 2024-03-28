@@ -21,6 +21,7 @@ export const insertMatch = async (match) => {
   }
   return data
 }
+<<<<<<< HEAD
 
 export const fetchMatchs = async() => {
   const {data,error} = await supabase
@@ -35,3 +36,5 @@ export const fetchMatchs = async() => {
   return data.reverse()
   }
   
+=======
+>>>>>>> 3048e61f85f79a2caaf5611d7901b66f65c0a712
