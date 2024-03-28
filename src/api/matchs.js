@@ -1,6 +1,9 @@
 import { supabase } from '@/supabase'
 
 
+
+
+
 export const insertMatch = async (match) => {
     const { data, error } = await supabase
     .from('matchs')
@@ -18,3 +21,20 @@ export const insertMatch = async (match) => {
   }
   return data
 }
+<<<<<<< HEAD
+
+export const fetchMatchs = async() => {
+  const {data,error} = await supabase
+  .from('matchs')
+  .select(
+    '*')
+  .order('created_at',{ascending:false})
+  .limit(10)
+  if (error) {
+      console.error('Error fetching teams : ',error)
+  }
+  return data.reverse()
+  }
+  
+=======
+>>>>>>> 3048e61f85f79a2caaf5611d7901b66f65c0a712

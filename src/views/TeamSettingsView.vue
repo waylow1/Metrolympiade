@@ -1,7 +1,8 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { fetchMyTeam, updateTeamMembers, updateTeamName } from '@/api/teams';
-import { PlusCircleIcon, BackspaceIcon } from '@heroicons/vue/24/outline';
+import { fetchMyTeam,updateTeamMembers,updateTeamName } from '@/api/teams';
+import { PlusCircleIcon , BackspaceIcon } from '@heroicons/vue/24/solid';
+import HistoryComponent from '@/components/HistoryComponent.vue';
 
 const teamData = ref([]);
 const members = ref([]);
@@ -33,6 +34,7 @@ const addMember = () => {
     updateTeamMembers(teamData.value.id, members.value);
     newMember.value = '';
 }
+
 const removeMember = (index) => {
     members.value.splice(index, 1)
     updateTeamMembers(teamData.value.id, members.value);
@@ -63,6 +65,9 @@ const onInput = (event) => {
             <button @click="addMember">
                 <PlusCircleIcon class="h-5 w-5" />
             </button>
+        </div>
+        <div>
+            <HistoryComponent :teamId="teamData.id"/>
         </div>
     </div>
     <div v-else>
@@ -117,6 +122,9 @@ const onInput = (event) => {
                         <PlusCircleIcon class="h-5 w-5" style="color: #ff7b00;"/>
                     </button>
                 </form>
+            </div>
+            <div>
+                <HistoryComponent :teamId="teamData.id"/>
             </div>
         </div>
     </div>
