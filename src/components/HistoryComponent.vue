@@ -1,5 +1,6 @@
 <script setup>
 import {fetchMatchsFromATeam} from '@/api/points'
+import {fetchAllTeams} from '@/api/teams'
 import {ref,watch } from 'vue';
 
 const props = defineProps({
@@ -10,9 +11,12 @@ const myMatchsData = ref([]);
 
 const fetchData = async () =>{
     myMatchsData.value = await fetchMatchsFromATeam(props.teamId);
+    const allTeam = await fetchAllTeams();
     console.log(myMatchsData.value);
     myMatchsData.value.forEach(match => {
         match.time = match.time.substring(0,5);
+        match.team1 = Object.values(allTeam).find(team => team.id === match.team1)?.name || 'Équipe introuvable';
+        match.team2 = Object.values(allTeam).find(team => team.id === match.team2)?.name || 'Équipe introuvable';
     });
 }
 
