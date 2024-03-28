@@ -28,4 +28,12 @@ a,
 
     padding: 0 2rem;
   }
+
+  #navbar {
+    border-radius: 100%;
+  }
+}
+
+.not-resizable-ta {
+  resize: none;
 }
