@@ -7,17 +7,16 @@ import AppButton from '@/components/AppButton.vue';
 
 const { push: routerPush } = useRouter();
 const email = ref('');
-const username = ref('');
 const password = ref('');
 
 const onSubmit = async () => {
-  if (!email.value || !username.value || !password.value) return;
+  if (!email.value|| !password.value) return;
   const { error } = await supabase.auth.signUp({
     email: email.value,
     password: password.value,
   });
   if (error) {
-    console.error("Une erreur s'est produite lors de l'inscription :", error.message);
+    alert("Une erreur s'est produite lors de l'inscription :", error.message);
   } else {
     alert("L'inscription a été réussie");
     routerPush({ name: 'rankings' });
