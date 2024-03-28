@@ -36,7 +36,7 @@ loadScript("https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js
           <button data-collapse-toggle="mobile-menu-3" type="button"
             class="md:hidden text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center"
             aria-controls="mobile-menu-3" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
+            <span class="sr-only">Ouvrir menu principal</span>
             <svg class="w-6 h-6" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd"
                 d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
@@ -55,17 +55,17 @@ loadScript("https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js
               <button data-collapse-toggle="mobile-menu-3" aria-controls="mobile-menu-3" type="button" @click="routerPush({ name: 'teamSettings' })">
                 <p class="hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-white md:p-0"
                   style="color: #ff7b00;"
-                  aria-current="page">Team settings</p>
+                  aria-current="page">Mon équipe</p>
               </button>
             </li>
             <li>
               <button data-collapse-toggle="mobile-menu-3" aria-controls="mobile-menu-3" type="button" @click="routerPush({ name: 'rankings' })">
-              <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Ranking</p>
+              <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Classement</p>
               </button>
             </li>
             <li>
               <button data-collapse-toggle="mobile-menu-3" aria-controls="mobile-menu-3" type="button" @click="routerPush({ name: 'matchs' })">
-              <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Match</p>
+              <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Matchs</p>
               </button>
             </li>
             <li>
@@ -75,7 +75,7 @@ loadScript("https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js
             </li>
             <li>
               <button data-collapse-toggle="mobile-menu-3" aria-controls="mobile-menu-3" type="button" @click="logout">
-              <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Logout</p>
+              <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Déconnexion</p>
               </button>
             </li>
           </ul>

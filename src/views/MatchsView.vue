@@ -27,7 +27,7 @@ onMounted (async () => {
         Matchs
     </h1>
     <div class = "w-1/2 mx-auto text-center">
-            <button class="m-5 border-2 border-orange-500 rounded-md p-3"  @click=" routerPush({ name: 'matchCreation' });">Create a match</button>
+            <button class="m-5 border-2 border-orange-500 rounded-md p-3"  @click=" routerPush({ name: 'matchCreation' });">Créer un match</button>
         </div>
     <div v-if="matchList">
         <div v-for="match in matchList" :key="match.id">
@@ -43,7 +43,7 @@ onMounted (async () => {
             </div>
         </div>
         <div class = "w-1/2 mx-auto text-center">
-            <button class="m-5 border-2 border-orange-500 rounded-md p-3"  @click=" routerPush({ name: 'matchCreation' });">Create a match</button>
+            <button class="m-5 border-2 border-orange-500 rounded-md p-3"  @click=" routerPush({ name: 'matchCreation' });">Créer un match</button>
         </div>
     </div>
     <div v-else>

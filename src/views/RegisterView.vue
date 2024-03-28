@@ -39,7 +39,7 @@ const onSubmit = async () => {
         <input type="password" id="password" v-model="password" class="p-2 text-white bg-black border-2 border-black border-b-gray-300 rounded-md ml-3 not-resizable-ta" required />
       </div>
       <AppButton>
-        Let's goooo
+        C'est parti ! 
       </AppButton>
     </form>
     <button type="button" @click="routerPush({ name: 'login' })" class="w-full flex justify-center pb-2">

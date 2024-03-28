@@ -47,14 +47,14 @@ const computingData = async (allTeams) => {
 </script>
 <template>
   <div class="w-full flex justify-center pb-2">
-    <h1 class="text-2xl font-bold">Rankings</h1>
+    <h1 class="text-2xl font-bold">Classement</h1>
   </div>
   <div class="relative overflow-x-auto shadow-md rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-white">
       <thead class="text-xs text-white uppercase" style="background-color: #202127;">
           <tr>
             <th scope="col" class="px-6 py-3">
-              <p class="font-bold text-center">Team</p>
+              <p class="font-bold text-center">Équipe</p>
             </th>
             <th scope="col" class="px-6 py-3">
               <p class="font-bold text-center">Points</p>
