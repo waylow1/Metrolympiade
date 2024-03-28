@@ -50,30 +50,40 @@ const computingData = async (allTeams) => {
     <h1 class="text-2xl font-bold">Rankings</h1>
   </div>
   <div class="relative overflow-x-auto shadow-md rounded-lg">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table class="w-full text-sm text-left rtl:text-right text-white">
+      <thead class="text-xs text-white uppercase" style="background-color: #202127;">
           <tr>
-            <th scope="col" class="px-6 py-3">Team</th>
-            <th scope="col" class="px-6 py-3">Points</th>
-            <th scope="col" class="px-6 py-3">Évolution</th>
+            <th scope="col" class="px-6 py-3">
+              <p class="font-bold text-center">Team</p>
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <p class="font-bold text-center">Points</p>
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <p class="font-bold text-center">Évolution</p>
+            </th>
           </tr>
       </thead>
       <tbody v-if="data!=null">
-          <tr v-for="item in data" :key="item.team" class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ item.team }}</th>
-            <td class="px-6 py-4">{{ item.points }}</td>
+          <tr v-for="item in data" :key="item.team" class="odd:bg-zinc-700 even:bg-zinc-800 border-b border-zinc-900">
+            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+              <p class="text-center">{{ item.team }}</p>
+            </th>
+            <td class="px-6 py-4">
+              <p class="text-center">{{ item.points }}</p>
+            </td>
             <td v-if="item.evo === 'sup'" class="px-6 py-4">
-              <p class="rotate-180 text-center font-semibold" style="color: #00ff00;">
+              <p class="rotate-180 text-center font-bold" style="color: #00ff00;">
                 v
               </p>
             </td>
             <td v-else-if="item.evo === 'inf'" class="px-6 py-4">
-              <p class="text-center font-semibold" style="color: #ff0000;">
+              <p class="text-center font-bold" style="color: #ff0000;">
                 v
               </p>
             </td>
             <td v-else class="px-6 py-4">
-              <p class="text-center font-semibold">
+              <p class="text-center font-bold">
                 -
               </p>
             </td>
