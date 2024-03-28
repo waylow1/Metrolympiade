@@ -32,6 +32,7 @@ const computingData = async (allTeams) => {
       points: points
     })
   }
+  data.sort((a, b) => b.points - a.points)
   return data
 }
 
