@@ -1,7 +1,8 @@
 <script setup>
 import {fetchMatchsFromATeam} from '@/api/points'
 import {fetchTeams} from '@/api/teams'
-import {ref,watch } from 'vue';
+import {ref,watch } from 'vue'
+
 
 const props = defineProps({
   teamId: String
@@ -23,11 +24,12 @@ watch(() => props.teamId, async (newValue, oldValue) => {
     if (newValue !== oldValue) {
         if (newValue) {
             await fetchData();
-        } else {// Remettre myMatchsData à une liste vide si teamId devient null ou undefined
+        } else {
             myMatchsData.value = [];
         }
     }
 });
+
 
 </script>
 <template>
@@ -36,6 +38,7 @@ watch(() => props.teamId, async (newValue, oldValue) => {
         <div v-for="(match,index) in myMatchsData" :key="index">
             <p>{{ match.time }} : {{ match.team1 }} - {{ match.team2 }} {{ match.team1_score }}-{{ match.team2_score }}</p>
         </div>
+       
     </div>
     <div v-else>
         <p>Chargement...</p>
