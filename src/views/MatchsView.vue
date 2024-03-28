@@ -13,6 +13,7 @@ onMounted (async () => {
     matchList.value = await fetchMatchs()
     const allTeam = await fetchTeams()
     matchList.value.forEach(match=>{
+        match.time = match.time.substring(0,5)
         match.team1 = Object.values(allTeam).find(team => team.id === match.team1)?.name || 'Équipe introuvable';
         match.team2 = Object.values(allTeam).find(team => team.id === match.team2)?.name || 'Équipe introuvable';
     });
@@ -25,10 +26,13 @@ onMounted (async () => {
     <h1 class="text-center text-2xl font-bold ">
         Matchs
     </h1>
+    <div class = "w-1/2 mx-auto text-center">
+            <button class="m-5 border-2 border-orange-500 rounded-md p-3"  @click=" routerPush({ name: 'matchCreation' });">Create a match</button>
+        </div>
     <div v-if="matchList">
         <div v-for="match in matchList" :key="match.id">
             <div id="matchs" class ="border-2 border-orange-500 p-3 m-6 w-1/2 mx-auto text-center rounded-md">
-                <p>{{ match.time }}-{{ match.sport}}</p>
+                <p>{{ match.time }} - {{ match.sport}}</p>
                 <p>{{ match.team1 }} vs {{ match.team2 }}</p>
                 <p>{{ match.team1_score }} - {{ match.team2_score }}</p>
 
