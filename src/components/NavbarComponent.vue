@@ -49,24 +49,24 @@ loadScript("https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js
         <div class="hidden md:flex justify-between items-center w-full md:w-auto md:order-1" id="mobile-menu-3">
           <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
             <li>
-              <button type="button" @click="routerPush({ name: 'teamSettings' })">
+              <button data-collapse-toggle="mobile-menu-3" aria-controls="mobile-menu-3" type="button" @click="routerPush({ name: 'teamSettings' })">
                 <p class="hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-white md:p-0"
                   style="color: #ff7b00;"
                   aria-current="page">Team settings</p>
               </button>
             </li>
             <li>
-              <button type="button" @click="routerPush({ name: 'rankings' })">
+              <button data-collapse-toggle="mobile-menu-3" aria-controls="mobile-menu-3" type="button" @click="routerPush({ name: 'rankings' })">
               <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Ranking</p>
               </button>
             </li>
             <li>
-              <button type="button" @click="routerPush({ name: 'matchs' })">
+              <button data-collapse-toggle="mobile-menu-3" aria-controls="mobile-menu-3" type="button" @click="routerPush({ name: 'matchs' })">
               <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Match</p>
               </button>
             </li>
             <li>
-              <button  type="button" @click="logout">
+              <button data-collapse-toggle="mobile-menu-3" aria-controls="mobile-menu-3" type="button" @click="logout">
               <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Logout</p>
               </button>
             </li>
