@@ -1,5 +1,5 @@
 import { supabase } from '@/supabase'
-import {ref} from 'vue'
+
 
 
 
@@ -24,7 +24,7 @@ export const insertMatch = async (match) => {
 
 export const fetchMatchs = async() => {
   const {data,error} = await supabase
-  .from('teams')
+  .from('matchs')
   .select(
     '*')
   .order('created_at',{ascending:false})

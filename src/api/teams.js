@@ -54,3 +54,11 @@ export const updateTeamName = async (teamId, name) => {
   }
   return data
 }
+
+export const fetchTeamById = async(teamId)=>{
+  const {data,error} = await supabase.from('teams').select('*').eq('id', teamId);
+    if(error){
+      alert("Error Fetching team by id")
+    }
+    return data
+}
