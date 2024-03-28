@@ -1,6 +1,6 @@
 <script setup>
 import {fetchMatchsFromATeam} from '@/api/points'
-import {fetchAllTeams} from '@/api/teams'
+import {fetchTeams} from '@/api/teams'
 import {ref,watch } from 'vue';
 
 const props = defineProps({
@@ -11,8 +11,7 @@ const myMatchsData = ref([]);
 
 const fetchData = async () =>{
     myMatchsData.value = await fetchMatchsFromATeam(props.teamId);
-    const allTeam = await fetchAllTeams();
-    console.log(myMatchsData.value);
+    const allTeam = await fetchTeams();
     myMatchsData.value.forEach(match => {
         match.time = match.time.substring(0,5);
         match.team1 = Object.values(allTeam).find(team => team.id === match.team1)?.name || 'Équipe introuvable';
@@ -35,7 +34,7 @@ watch(() => props.teamId, async (newValue, oldValue) => {
     <div v-if="myMatchsData">
         <h2>Historique de l'équipe</h2>
         <div v-for="(match,index) in myMatchsData" :key="index">
-            <p>{{ match.time }} : {{ match.team1 }} - {{ match.score }}</p>
+            <p>{{ match.time }} : {{ match.team1 }} - {{ match.team2 }} {{ match.team1_score }}-{{ match.team2_score }}</p>
         </div>
     </div>
     <div v-else>
