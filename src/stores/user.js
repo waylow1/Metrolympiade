@@ -1,25 +1,13 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { supabase } from '@/supabase'
 
 export const useUserStore = defineStore('user', () => {
   const user = ref(null)
 
-  async function fetchUserTeam(userId){
-    if(!userId) {
-        user.value = null
-        return
-    }
-    const {data,error} = await supabase.from('teams').select('*').eq('leader',userId).single()
-    
-    if(error){
-        console.error('Error fetching user profile : ',error)
-    }
-    else{
-        user.value = data
-    }
+  // Supprimez fetchUser et utilisez setUser directement
+  function setUser(newUser) {
+    user.value = newUser;
   }
 
-
-  return { user, fetchUserTeam }
+  return { user, setUser }
 })

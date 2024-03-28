@@ -3,25 +3,33 @@ import {ref} from 'vue'
 import {supabase} from '@/supabase';
 import {useRouter} from 'vue-router'
 import AppButton from '@/components/AppButton.vue';
+import {  useUserStore } from '@/stores/user';
 
 const {push: routerPush} = useRouter();
 
 const email = ref('')
 const password = ref('')
 
+
+
+
 const onSubmit = async()=>{
     if(!email.value && !password.value) return;
 
-    const {error} = await supabase.auth.signInWithPassword({
+    const {data, error} = await supabase.auth.signInWithPassword({
         email: email.value,
         password: password.value
     })
     if (error) {
         alert("Une erreur s'est produite lors de la connexion :", error.message);
   } else {
+    
+    const userStore = useUserStore();
+    userStore.setUser(data);
     alert("Connexion réussie");
     routerPush({ name: 'rankings' });
   }
+
     
 }
 

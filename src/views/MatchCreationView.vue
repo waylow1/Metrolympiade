@@ -7,6 +7,7 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
 
+
 const teamlist = ref([])
 const myTeam = ref('')
 const opponentTeam = ref('');
@@ -16,21 +17,21 @@ const sport = ref('')
 const time = ref('')
 
 
-const { user } = await(storeToRefs(useUserStore()))
 
 const router = useRouter()
 
 onMounted(async () => {
-    teamlist.value = await(fetchTeams())
+    const userStore = useUserStore();
+    console.log(userStore)
+    teamlist.value = await(fetchTeams("edbdadfa-82ee-4757-a4b0-ab6e77dbe958"))
     myTeam.value =  await(fetchMyTeam("edbdadfa-82ee-4757-a4b0-ab6e77dbe958"))
 })
 
-console.log(user);
+
+
 
 
 const submit = () => {
-    
-
 
     const match = {
       team1: myTeam.value.id,
