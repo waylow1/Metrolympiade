@@ -10,7 +10,7 @@ const editedTeamName = ref('');
 const inputValue = ref('');
 
 onMounted(async () => {
-    teamData.value = await fetchMyTeam("cf14d7c5-e910-4aef-960c-df4b3aaa41e2");
+    teamData.value = await fetchMyTeam();
     members.value = teamData.value.members || [];
     editedTeamName.value = teamData.value.name || '';
     inputValue.value = teamData.value.name;

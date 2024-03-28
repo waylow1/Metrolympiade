@@ -3,12 +3,15 @@ import { loadScript } from "vue-plugin-load-script";
 import { useRouter } from 'vue-router';
 import { supabase } from '@/supabase';
 import { ref } from 'vue';
+import { useUserStore } from "@/stores/user";
 
 const { push: routerPush } = useRouter();
 const router = useRouter();
 const loading = ref(false);
 
 const logout = async ()=>{
+    const userStore = useUserStore();
+    userStore.logoutUser();  
     loading.value = true;
     await supabase.auth.signOut()
     router.push('/login')
