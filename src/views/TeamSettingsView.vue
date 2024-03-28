@@ -32,6 +32,7 @@ const addMember = () => {
     updateTeamMembers(teamData.value.id,members.value);
     newMember.value = '';
 }
+
 const removeMember = (index) => {
     members.value.splice(index,1)
     updateTeamMembers(teamData.value.id,members.value);
