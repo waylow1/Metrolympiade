@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { fetchMyTeam,updateTeamMembers,updateTeamName } from '@/api/teams';
 import { PlusCircleIcon , MinusCircleIcon } from '@heroicons/vue/24/solid';
+import HistoryComponent from '@/components/HistoryComponent.vue';
 
 const teamData = ref([]);
 const members = ref([]);
@@ -9,7 +10,7 @@ const newMember = ref('');
 const editedTeamName = ref('');
 
 onMounted(async () => {
-     teamData.value = await fetchMyTeam("cf14d7c5-e910-4aef-960c-df4b3aaa41e2"); 
+     teamData.value = await fetchMyTeam("edbdadfa-82ee-4757-a4b0-ab6e77dbe958"); 
      members.value  = teamData.value.members || [];
      editedTeamName.value = teamData.value.name || '';
 })
@@ -55,6 +56,9 @@ const removeMember = (index) => {
             <button @click="addMember" >
                 <PlusCircleIcon class="h-5 w-5" />
             </button>
+        </div>
+        <div>
+            <HistoryComponent :teamId="teamData.id"/>
         </div>
     </div>
     <div v-else>
