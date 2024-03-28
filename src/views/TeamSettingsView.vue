@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { fetchMyTeam,updateTeamMembers,updateTeamName } from '@/api/teams';
-import { PlusCircleIcon , MinusCircleIcon } from '@heroicons/vue/24/solid';
+import { PlusCircleIcon , BackspaceIcon } from '@heroicons/vue/24/solid';
 import HistoryComponent from '@/components/HistoryComponent.vue';
 
 const teamData = ref([]);
@@ -124,7 +124,7 @@ const onInput = (event) => {
                 </form>
             </div>
             <div>
-            <HistoryComponent :teamId="teamData.id"/>
+                <HistoryComponent :teamId="teamData.id"/>
             </div>
         </div>
     </div>
