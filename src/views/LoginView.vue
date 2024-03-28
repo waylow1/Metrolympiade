@@ -22,7 +22,8 @@ const onSubmit = async () => {
   } else {
     
     const userStore = useUserStore();
-    userStore.setUser(data);
+    console.log(data.user)
+    userStore.setUser(data.user);
     alert("Connexion réussie");
     routerPush({ name: 'rankings' });
   }

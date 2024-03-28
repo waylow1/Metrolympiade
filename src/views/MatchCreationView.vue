@@ -21,10 +21,10 @@ const time = ref('')
 const router = useRouter()
 
 onMounted(async () => {
-    const userStore = useUserStore();
-    console.log(userStore)
-    teamlist.value = await(fetchTeams("edbdadfa-82ee-4757-a4b0-ab6e77dbe958"))
-    myTeam.value =  await(fetchMyTeam("edbdadfa-82ee-4757-a4b0-ab6e77dbe958"))
+    const {user} = useUserStore()
+    console.log(user.id)
+    teamlist.value = await(fetchTeams())
+    myTeam.value =  await(fetchMyTeam(user.id))
 })
 
 
