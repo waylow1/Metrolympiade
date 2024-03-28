@@ -34,3 +34,23 @@ export const updateTeamMembers = async (teamId, members) => {
   }
   return data
 }
+
+export const updateTeamName = async (teamId, name) => {
+
+    const {count,errorCountable} = await supabase.from('teams').select('*',{count:'exact'}).eq('name',name)
+    if(count>0){
+        alert("Ce nom d'équipe est déjà pris");
+        return
+    }
+    if(errorCountable){
+        console.error('Error fetching teams : ',errorCountable)
+    }
+  const { data, error } = await supabase
+    .from('teams')
+    .update({ name })
+    .eq('id', teamId)
+  if (error) {
+    alert("Choisir un autre nom d'équipe");
+  }
+  return data
+}
