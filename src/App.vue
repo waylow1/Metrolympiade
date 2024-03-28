@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router';
 import Navbar from '@/components/NavbarComponent.vue'
 </script>
 <template>
-  <div class="top-0">
+  <div class="top-0 rounded-lg" style="background-color: var(--color-border);">
     <Navbar></Navbar>
   </div>
   <div class="mt-7">
