@@ -64,10 +64,13 @@ const computingData = async (allTeams) => {
             </th>
           </tr>
       </thead>
-      <tbody v-if="data!=null">
-          <tr v-for="item in data" :key="item.team" class="odd:bg-zinc-700 even:bg-zinc-800 border-b border-zinc-900">
+      <tbody v-if="data!=null" v-for="(item, index) in data" :key="item.team" class="even:bg-zinc-700 odd:bg-zinc-800">
+          <tr class="border-b border-neutral-800">
             <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
-              <p class="text-center">{{ item.team }}</p>
+              <p v-if="index == 0" class="text-center" style="color: #d4af37;">{{ item.team }}</p>
+              <p v-else-if="index == 1" class="text-center" style="color: #97E9F5;">{{ item.team }}</p>
+              <p v-else-if="index == 2" class="text-center" style="color: #B28545;">{{ item.team }}</p>
+              <p v-else="" class="text-center">{{ item.team }}</p>
             </th>
             <td class="px-6 py-4">
               <p class="text-center">{{ item.points }}</p>
