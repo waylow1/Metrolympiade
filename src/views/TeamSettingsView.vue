@@ -3,7 +3,8 @@ import { onMounted, ref } from 'vue';
 import { fetchMyTeam,updateTeamMembers,updateTeamName } from '@/api/teams';
 import { PlusCircleIcon , BackspaceIcon } from '@heroicons/vue/24/solid';
 import HistoryComponent from '@/components/HistoryComponent.vue';
-
+import { useUserStore } from '@/stores/user';
+import { storeToRefs } from 'pinia';
 const teamData = ref([]);
 const members = ref([]);
 const newMember = ref('');
@@ -11,7 +12,8 @@ const editedTeamName = ref('');
 const inputValue = ref('');
 
 onMounted(async () => {
-    teamData.value = await fetchMyTeam();
+    const {user} = storeToRefs(useUserStore())
+    teamData.value = await fetchMyTeam(user.value.id);
     members.value = teamData.value.members || [];
     editedTeamName.value = teamData.value.name || '';
     inputValue.value = teamData.value.name;
