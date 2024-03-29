@@ -30,7 +30,7 @@ loadScript("https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js
       <div class="container mx-auto flex flex-wrap items-center justify-between">
         <div class="flex md:hover:bg-gray-900">
           <p class="text-3xl font-black" style="color: #ffffff;">M</p>
-          <span class="self-center text-lg font-semibold whitespace-nowrap" style="color: #ff7b00;">etrolympiade</span>
+          <span class="self-center text-lg font-semibold whitespace-nowrap" style="color: #ff7b00;">etrolympiades</span>
         </div>
         <div class="flex md:order-2">
           <button data-collapse-toggle="mobile-menu-3" type="button"

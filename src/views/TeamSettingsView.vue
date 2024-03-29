@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { fetchMyTeam,updateTeamMembers,updateTeamName } from '@/api/teams';
-import { PlusCircleIcon , BackspaceIcon } from '@heroicons/vue/24/solid';
+import { fetchMyTeam, updateTeamMembers, updateTeamName } from '@/api/teams';
+import { PlusCircleIcon, BackspaceIcon } from '@heroicons/vue/24/solid';
 import HistoryComponent from '@/components/HistoryComponent.vue';
 import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
@@ -12,7 +12,7 @@ const editedTeamName = ref('');
 const inputValue = ref('');
 
 onMounted(async () => {
-    const {user} = storeToRefs(useUserStore())
+    const { user } = storeToRefs(useUserStore())
     teamData.value = await fetchMyTeam(user.value.id);
     members.value = teamData.value.members || [];
     editedTeamName.value = teamData.value.name || '';
@@ -119,15 +119,25 @@ const onInput = (event) => {
             <div>
                 <label class="py-2" for="AjouterMembre">Ajouter un membre : </label>
                 <form class="flex items-center pt-2" v-on:submit.prevent="addMember">
-                    <input type="text" v-model="newMember" style="background-color: #202127; border-color: #202127; border-bottom-color: #ffffff;" class="text-white border-2 border-b-gray-300 rounded-md"/>
+                    <input type="text" v-model="newMember"
+                        style="background-color: #202127; border-color: #202127; border-bottom-color: #ffffff;"
+                        class="text-white border-2 border-b-gray-300 rounded-md" />
                     <button type="submit">
-                        <PlusCircleIcon class="h-5 w-5" style="color: #ff7b00;"/>
+                        <PlusCircleIcon class="h-5 w-5" style="color: #ff7b00;" />
                     </button>
                 </form>
             </div>
-            <div>
-                <HistoryComponent :teamId="teamData.id"/>
-            </div>
         </div>
+    </div>
+    <div class="max-w-sm mt-5 p-6 rounded-lg shadow grid grid-cols-1 divide-y divide-neutral-600"
+        style="background-color: #202127;">
+        <div class="pb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+        </div>
+        <HistoryComponent :teamId="teamData.id" />
     </div>
 </template>

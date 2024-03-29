@@ -35,7 +35,7 @@ const computingData = async (allTeams) => {
       }
     })
     data.push({
-      team: team.name,
+      team: team.name || 'Équipe mystérieuse',
       points: points,
       evo: evoCalculated
     })
@@ -70,7 +70,7 @@ const computingData = async (allTeams) => {
               <p v-if="index == 0" class="text-center" style="color: #d4af37;">{{ item.team }}</p>
               <p v-else-if="index == 1" class="text-center" style="color: #97E9F5;">{{ item.team }}</p>
               <p v-else-if="index == 2" class="text-center" style="color: #B28545;">{{ item.team }}</p>
-              <p v-else="" class="text-center">{{ item.team }}</p>
+              <p v-else class="text-center">{{ item.team }}</p>
             </th>
             <td class="px-6 py-4">
               <p class="text-center">{{ item.points }}</p>
