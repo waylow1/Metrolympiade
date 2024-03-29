@@ -50,7 +50,7 @@ export const updateTeamName = async (teamId, name) => {
     .update({ name })
     .eq('id', teamId)
   if (error) {
-    alert("Choisir un autre nom d'équipe");
+    alert(error.message);
   }
   return data
 }
