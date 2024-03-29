@@ -1,8 +1,10 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { fetchMyTeam, updateTeamMembers, updateTeamName } from '@/api/teams';
-import { PlusCircleIcon, BackspaceIcon } from '@heroicons/vue/24/outline';
-
+import { fetchMyTeam,updateTeamMembers,updateTeamName } from '@/api/teams';
+import { PlusCircleIcon , BackspaceIcon } from '@heroicons/vue/24/solid';
+import HistoryComponent from '@/components/HistoryComponent.vue';
+import { useUserStore } from '@/stores/user';
+import { storeToRefs } from 'pinia';
 const teamData = ref([]);
 const members = ref([]);
 const newMember = ref('');
@@ -10,7 +12,8 @@ const editedTeamName = ref('');
 const inputValue = ref('');
 
 onMounted(async () => {
-    teamData.value = await fetchMyTeam("cf14d7c5-e910-4aef-960c-df4b3aaa41e2");
+    const {user} = storeToRefs(useUserStore())
+    teamData.value = await fetchMyTeam(user.value.id);
     members.value = teamData.value.members || [];
     editedTeamName.value = teamData.value.name || '';
     inputValue.value = teamData.value.name;
@@ -33,6 +36,7 @@ const addMember = () => {
     updateTeamMembers(teamData.value.id, members.value);
     newMember.value = '';
 }
+
 const removeMember = (index) => {
     members.value.splice(index, 1)
     updateTeamMembers(teamData.value.id, members.value);
@@ -63,6 +67,9 @@ const onInput = (event) => {
             <button @click="addMember">
                 <PlusCircleIcon class="h-5 w-5" />
             </button>
+        </div>
+        <div>
+            <HistoryComponent :teamId="teamData.id"/>
         </div>
     </div>
     <div v-else>
@@ -117,6 +124,9 @@ const onInput = (event) => {
                         <PlusCircleIcon class="h-5 w-5" style="color: #ff7b00;"/>
                     </button>
                 </form>
+            </div>
+            <div>
+                <HistoryComponent :teamId="teamData.id"/>
             </div>
         </div>
     </div>

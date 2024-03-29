@@ -51,6 +51,14 @@ const router = createRouter({
     {
       path:"/:pathMatch(.*)*",
       redirect: '/'
+    },
+    {
+      path: '/planning',
+      name:'planning',
+      component: () => import('../views/PlanningView.vue'),
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
