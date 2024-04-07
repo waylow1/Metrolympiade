@@ -68,11 +68,7 @@ loadScript("https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js
               <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Matchs</p>
               </button>
             </li>
-            <li>
-              <button data-collapse-toggle="mobile-menu-3" aria-controls="mobile-menu-3" type="button" @click="routerPush({ name: 'planning' })">
-              <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Planning</p>
-              </button>
-            </li>
+            
             <li>
               <button data-collapse-toggle="mobile-menu-3" aria-controls="mobile-menu-3" type="button" @click="logout">
               <p class="text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-gray-400 md:p-0">Déconnexion</p>
