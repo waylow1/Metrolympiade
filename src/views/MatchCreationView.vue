@@ -64,7 +64,7 @@ const submit = () => {
    <div class="flex flex-col items-center justify-center">
     <h1>Match</h1>
     
-    <div class="space-y-10 text-center">
+    <div class="space-y-10 text-center color"  >
             <div>
                 <label for="myTeam"> Mon équipe </label>
                 <select id="myTeam" class="border-2 rounded-md w-full text-center" style="color: #ff7b00;">
@@ -79,7 +79,7 @@ const submit = () => {
             </div>
             <div>
                 <label for="sport"> Epreuve </label>
-                <input  id="sport" v-model="sport" class="border-2 rounded-md w-full text-center" style="color: #ff7b00;" type="text"/>
+                <input  id="sport" v-model="sport" class="border-2 rounded-md w-full text-center" type="text" style="color: #ff7b00;"/>
             </div>
             <div>
                 <label for="time"> Heure de la rencontre </label>
@@ -88,11 +88,11 @@ const submit = () => {
         <div class="flex space-x-28">
             <div class="flex flex-col">
                 <label for="myTeamScore">Mon score</label>
-                <input id="myTeamScore" v-model="myTeamScore"  class="border-2 rounded-md size-16 text-center" style="color: #ff7b00;" type="number">
+                <input id="myTeamScore" v-model="myTeamScore"  class="border-2 rounded-md size-16 text-center" type="number" style="color: #ff7b00;">
             </div>
             <div class="flex flex-col">
                 <label for="opponentTeamScore">Score adverse</label>
-                <input id="opponentTeamScore" v-model="opponentTeamScore" class="border-2 rounded-md size-16 text-center" style="color: #ff7b00;" type="number">
+                <input id="opponentTeamScore" v-model="opponentTeamScore" class="border-2 rounded-md size-16 text-center" type="number" style="color: #ff7b00;">
             </div>
         </div>
         <button @click="submit" class="p-2 mt-4 bg-green-400 rounded-md">Create the Match</button>

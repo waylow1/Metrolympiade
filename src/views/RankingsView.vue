@@ -35,7 +35,8 @@ const computingData = async (allTeams) => {
       }
     })
     data.push({
-      team: team.name || 'Équipe mystérieuse',
+      team: team.name,
+      avatar: team.img_url,
       points: points,
       evo: evoCalculated
     })
@@ -67,10 +68,22 @@ const computingData = async (allTeams) => {
       <tbody v-if="data!=null" v-for="(item, index) in data" :key="item.team" class="even:bg-zinc-700 odd:bg-zinc-800">
           <tr class="border-b border-neutral-800">
             <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+              <svg v-if="item.avatar === null" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <img v-else :src="item.avatar" alt="Team Image" width="40" height="40">
               <p v-if="index == 0" class="text-center" style="color: #d4af37;">{{ item.team }}</p>
               <p v-else-if="index == 1" class="text-center" style="color: #97E9F5;">{{ item.team }}</p>
               <p v-else-if="index == 2" class="text-center" style="color: #B28545;">{{ item.team }}</p>
               <p v-else class="text-center">{{ item.team }}</p>
+              
+                
+                
+             
             </th>
             <td class="px-6 py-4">
               <p class="text-center">{{ item.points }}</p>
