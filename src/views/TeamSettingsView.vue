@@ -100,7 +100,7 @@ const changeTeamAvatar = () => {
                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
-                <img v-else :src="teamAvatar" alt="User Image" width="48" height="48">
+                <img v-else :src="teamAvatar" alt="Team Image" width="48" height="48">
             </div>
             <input v-if="showChangeAvatarInput" type="text" v-model="newAvatarUrl" class="text-white border-2 border-b-gray-300 rounded-md"
                    style="background-color: #202127; border-color: #202127; border-bottom-color: #ffffff;" placeholder="Renseignez l'URL de votre avatar">
