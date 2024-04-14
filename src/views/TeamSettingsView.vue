@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { fetchMyTeam,updateTeamMembers,updateTeamName } from '@/api/teams';
+import { fetchMyTeam,updateTeamMembers,updateTeamName, updateTeamAvatar } from '@/api/teams';
 import { PlusCircleIcon , BackspaceIcon } from '@heroicons/vue/24/solid';
 import HistoryComponent from '@/components/HistoryComponent.vue';
 import { useUserStore } from '@/stores/user';
@@ -10,6 +10,8 @@ const members = ref([]);
 const newMember = ref('');
 const editedTeamName = ref('');
 const inputValue = ref('');
+const teamAvatar = ref('');
+const showChangeAvatarInput = ref(false);
 
 onMounted(async () => {
     const {user} = storeToRefs(useUserStore())
@@ -17,8 +19,9 @@ onMounted(async () => {
     members.value = teamData.value.members || [];
     editedTeamName.value = teamData.value.name || '';
     inputValue.value = teamData.value.name;
+    teamAvatar.value = teamData.value.img_url;
+    
 })
-
 
 const submitTeamName = () => {
     updateTeamName(teamData.value.id, inputValue.value);
@@ -45,6 +48,17 @@ const removeMember = (index) => {
 const onInput = (event) => {
     inputValue.value = event.target.value;
 }
+
+
+
+const newAvatarUrl = ref('');
+
+const changeTeamAvatar = () => {
+    updateTeamAvatar(teamData.value.id, newAvatarUrl.value);
+    teamAvatar.value = newAvatarUrl.value;
+    showChangeAvatarInput.value = false;
+   
+};
 </script>
 
 <template>
@@ -78,13 +92,23 @@ const onInput = (event) => {
     <div class="max-w-sm p-6 rounded-lg shadow grid grid-cols-1 divide-y divide-neutral-600"
         style="background-color: #202127;">
         <div class="pb-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
-                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
+            <div @click="showChangeAvatarInput = !showChangeAvatarInput">
+                <svg v-if="teamAvatar === null" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <img v-else :src="teamAvatar" alt="User Image" width="48" height="48">
+            </div>
+            <input v-if="showChangeAvatarInput" type="text" v-model="newAvatarUrl" class="text-white border-2 border-b-gray-300 rounded-md"
+                   style="background-color: #202127; border-color: #202127; border-bottom-color: #ffffff;" placeholder="Renseignez l'URL de votre avatar">
+            <button v-if="showChangeAvatarInput" @click="changeTeamAvatar"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300"
+                style="background-color: #ff7b00; margin-left: 10px;">
+                Changer
+            </button>
         </div>
         <div class="py-2">
             <input class="text-white py-2" @input="onInput" :value="inputValue" style="background-color: #202127;">

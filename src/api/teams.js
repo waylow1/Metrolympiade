@@ -62,3 +62,14 @@ export const fetchTeamById = async(teamId)=>{
     }
     return data
 }
+
+export const updateTeamAvatar = async (teamId, img_url) =>{
+  const { data, error } = await supabase
+    .from('teams')
+    .update({ img_url })
+    .eq('id', teamId)
+  if (error) {
+    console.error('Error updating team avatar : ',error)
+  }
+  return data
+}
